@@ -33,7 +33,7 @@
                </VBox.margin>
             </Button>
             <Label text="Wrong Words" />
-            <TextArea fx:id="txtWrong" prefHeight="210.0" prefWidth="378.0" />
+            <TextArea fx:id="txtWrong" editable="false" prefHeight="210.0" prefWidth="378.0" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="text content No Error" textFill="RED" />

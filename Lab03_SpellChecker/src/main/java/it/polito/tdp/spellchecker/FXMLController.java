@@ -5,6 +5,7 @@
 package it.polito.tdp.spellchecker;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.spellchecker.model.Dictionary;
@@ -18,6 +19,9 @@ import javafx.scene.control.TextArea;
 public class FXMLController {
 	
 	Dictionary dictionary;
+	List<String> inputText;
+	String txt;
+	String[] Atxt;
 
     @FXML
     private ResourceBundle resources;
@@ -45,16 +49,35 @@ public class FXMLController {
 
     @FXML
     void doClear(ActionEvent event) {
+    	txtTranslate.clear();
+    	txtWrong.clear();
+    	comboLanguage.setValue("");
 
     }
 
     @FXML
     void doLanguegge(ActionEvent event) {
-
+    	String lang = comboLanguage.getValue();
+    	if(lang.equals("")) {
+    		return;
+    	}
+    	else {
+    	System.out.println(lang);
+    	this.dictionary.loadDictionary(lang);
+    	}
     }
 
     @FXML
     void doTranslate(ActionEvent event) {
+    	
+    	txt= txtTranslate.getText().replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_'()\\[\\]\"]"," ");
+    	Atxt = txt.split(" ");
+    	for(String s:Atxt) {
+    		inputText.add(s);
+    	}
+    	
+    	
+    	
 
     }
 
