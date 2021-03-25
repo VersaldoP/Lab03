@@ -5,10 +5,12 @@
 package it.polito.tdp.spellchecker;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.spellchecker.model.Dictionary;
+import it.polito.tdp.spellchecker.model.RichWord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,8 +22,11 @@ public class FXMLController {
 	
 	Dictionary dictionary;
 	List<String> inputText;
+	List<RichWord> ww;
 	String txt;
+	String wt="";
 	String[] Atxt;
+	private long tmp = 0;
 
     @FXML
     private ResourceBundle resources;
@@ -46,13 +51,20 @@ public class FXMLController {
 
     @FXML
     private Label textTemp;
+    
+    @FXML
+    private Label lblNumeroErrori;
 
     @FXML
     void doClear(ActionEvent event) {
     	txtTranslate.clear();
     	txtWrong.clear();
     	comboLanguage.setValue("");
-
+    	lblNumeroErrori.setText("");
+    	ww.clear();
+    	inputText.clear();
+    	wt="";
+    	
     }
 
     @FXML
@@ -62,7 +74,7 @@ public class FXMLController {
     		return;
     	}
     	else {
-    	System.out.println(lang);
+//    	System.out.println(lang);
     	this.dictionary.loadDictionary(lang);
     	}
     }
@@ -70,14 +82,31 @@ public class FXMLController {
     @FXML
     void doTranslate(ActionEvent event) {
     	
-    	txt= txtTranslate.getText().replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_'()\\[\\]\"]"," ");
-    	Atxt = txt.split(" ");
-    	for(String s:Atxt) {
-    		inputText.add(s);
+//    	txt= txtTranslate.getText().replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_'()\\[\\]\"]"," ");
+//    	System.out.println(txt);
+//    	Atxt = txt.split(" ");
+    	if(!comboLanguage.getValue().equals("")) {
+	    	tmp=System.nanoTime();
+	    	
+	    	txt= txtTranslate.getText();
+	    	inputText = new ArrayList<String>();
+	    	inputText = this.dictionary.getList(txt);
+	    	
+	    	
+	    	ww = new ArrayList<RichWord>();
+	    	
+	//    	for(String s:Atxt) {
+	//    		inputText.add(s.toLowerCase());
+	//    	}
+	    	ww=this.dictionary.spellCheckText(inputText);
+	    	tmp= System.nanoTime()-tmp;
+	    	for(RichWord s: ww) {
+	    		wt=wt+ s.toString();
+	    	}
+	    	txtWrong.setText(wt);
+	    	lblNumeroErrori.setText("text content N:"+ww.size()+" Error");
+	    	textTemp.setText("Spell check completed in :"+tmp+" nanosecond");
     	}
-    	
-    	
-    	
 
     }
 
@@ -97,7 +126,8 @@ public class FXMLController {
 		
 		this.dictionary = model;
 		comboLanguage.getItems().addAll("English", "Italian");
-
+		
+		System.out.println("ciao");
 		
 	}
 }

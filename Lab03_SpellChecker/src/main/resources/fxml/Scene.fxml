@@ -36,7 +36,7 @@
             <TextArea fx:id="txtWrong" editable="false" prefHeight="210.0" prefWidth="378.0" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="text content No Error" textFill="RED" />
+                  <Label fx:id="lblNumeroErrori" text="text content No Error" textFill="RED" />
                   <Button fx:id="btcClear" mnemonicParsing="false" onAction="#doClear" text="ClearText">
                      <HBox.margin>
                         <Insets left="150.0" />

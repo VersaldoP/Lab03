@@ -14,4 +14,11 @@ public class RichWord {
 	public void setControl(boolean control) {
 		this.control = control;
 	}
+
+
+	@Override
+	public String toString() {
+		return " " + word + "\n";
+	}
+	
 }
