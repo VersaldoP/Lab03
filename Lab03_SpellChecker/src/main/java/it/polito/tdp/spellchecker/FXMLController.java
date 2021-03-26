@@ -6,6 +6,7 @@ package it.polito.tdp.spellchecker;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -86,19 +87,21 @@ public class FXMLController {
 //    	System.out.println(txt);
 //    	Atxt = txt.split(" ");
     	if(!comboLanguage.getValue().equals("")) {
-	    	tmp=System.nanoTime();
+	    	
 	    	
 	    	txt= txtTranslate.getText();
 	    	inputText = new ArrayList<String>();
 	    	inputText = this.dictionary.getList(txt);
 	    	
 	    	
-	    	ww = new ArrayList<RichWord>();
+	    	ww = new LinkedList<RichWord>();
 	    	
 	//    	for(String s:Atxt) {
 	//    		inputText.add(s.toLowerCase());
 	//    	}
-	    	ww=this.dictionary.spellCheckText(inputText);
+	    	tmp=System.nanoTime();
+	    	ww=this.dictionary.spellCheckTextDicotomic(inputText);
+	    	
 	    	tmp= System.nanoTime()-tmp;
 	    	for(RichWord s: ww) {
 	    		wt=wt+ s.toString();
