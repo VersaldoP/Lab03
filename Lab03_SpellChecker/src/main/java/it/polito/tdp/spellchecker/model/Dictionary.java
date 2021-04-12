@@ -61,6 +61,45 @@ public class Dictionary {
 			}
 		}
 	}
+	
+//	ALTERNATIVA DI CARICAMENTO PIù VELOCE E PIù INTERATTIVO !!!!!
+//public boolean loadDictionary(String language) {
+//		
+//		
+//		if (dizionario!=null && this.language.equals(language)){
+//			return true;
+//		}
+//		
+//		dizionario = new ArrayList<String>();
+//		this.language = language;
+//		
+//		try {
+//
+//			FileReader fr = new FileReader("src/main/resources/" + language + ".txt");
+//			BufferedReader br = new BufferedReader(fr);
+//			String word;
+//
+//			while ((word = br.readLine()) != null) {
+//				dizionario.add(word.toLowerCase());
+//			}
+//
+//			Collections.sort(dizionario);
+//
+//			br.close();
+//			System.out.println("Dizionario " + language + " loaded. Found " + dizionario.size() + " words.");
+//			
+//			return true;
+//
+//		} catch (IOException e) {
+//			System.err.println("Errore nella lettura del file");
+//			return false;
+//		}
+//
+//		
+//	}
+	
+	
+	
 	public List<String> getList(String txt){
 		temptxt = txt.replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_'()\\[\\]\"]"," ");
 //    	System.out.println(txt);
@@ -110,22 +149,7 @@ public class Dictionary {
 			
 			
 			
-//			for(String d: dictionary) {
-//				if(!d.equals(s)&!contains) {
-//					contains=false;
-//					continue;
-//					
-//					
-//				}
-//				else {
-//			 
-//				    contains=true;
-//					paroleSbagliate.add(rw=new RichWord(s));
-//					rw.setControl(false);
-//					
-//				}
-//				
-//			}
+
 			
 			
 		}

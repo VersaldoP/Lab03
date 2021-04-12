@@ -92,6 +92,15 @@ public class FXMLController {
 	    	txt= txtTranslate.getText();
 	    	inputText = new ArrayList<String>();
 	    	inputText = this.dictionary.getList(txt);
+
+//	    	SOLUZIONE PROPOSTA CON I STRING TOKEN MOLTO PIù OTTIMALE PERCHè 
+//	    	NON VA AD IMPLEMENTARE UN METODO PER TRASFORMARE IN LISTA LA STRINGA DI TESTO ->(getList())
+//	    		inputText = inputText.replaceAll("\n", " ");
+//			inputText = inputText.replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_`~()\\[\\]]", "");
+//			StringTokenizer st = new StringTokenizer(inputText, " ");
+//			while (st.hasMoreTokens()) {
+//				inputTextList.add(st.nextToken());
+//			}
 	    	
 	    	
 	    	ww = new LinkedList<RichWord>();
